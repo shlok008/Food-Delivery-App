@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* .header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+.logo{
+    width: 200px;
+}
+
+.nav-items {
+    padding: 0px 20px;
+}
+.nav-items >ul{
+    font-size: 24px;
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-items > ul > li{
+    padding: 10px;
+    margin: 10px;
+}
+
+.res-card{
+    margin: 8px;
+    padding: 10px;
+    width: 230px;
+    height: 550px;
+    transition: transform 0.2s ease;
+}
+
+
+.res-container{
+    display: flex;
+   flex-wrap: wrap; 
+}
+
+.res-card:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+} 
+
+.search{
+    padding: 10px;
+}
+
+.res-logo{
+    width: 100%;
+}
+
+.filter-btn{
+    margin: 10px;
+}
+
+.shimmer-card{
+    width: 230px;
+    height: 350px;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
+
+.shimmer-container{
+    display: flex;
+}
+
+.login{
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.filter{
+    display: flex;
+}
+
+.menu {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.menu h2 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.menu h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.menu ul {
+    padding: 0;
+    margin: 20px 0;
+}
+
+.menu li {
+    list-style: none;
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox for layout *//*
+    justify-content: space-between; /* Space between food details and image *//*
+}
+
+.food-details {
+    flex: 1; /* Take remaining space in the row *//*
+}
+
+.food-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.food-price {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.food-description {
+    font-size: 14px;
+    color: #888;
+}
+
+.food-image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-self: flex-start; /* Align image to the top *//*
+}
+
+.user-card{
+    padding: 10px;
+    border: 1px solid black
+} */
