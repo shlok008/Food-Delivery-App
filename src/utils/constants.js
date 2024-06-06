@@ -8,6 +8,6 @@ export const ITEM_IMG_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/";
 
 	export const REST_URL =
-		"https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=30.331821&lng=78.083556&restaurantId=";
+		"https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=30.331821&lng=78.083556&restaurantId=";
 
 		

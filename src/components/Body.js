@@ -4,42 +4,43 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import axios from "axios";
 
 const Body = () => {
 	const [listOfRestaurant, setListOfRestaurant] = useState([]);
 	const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-	const [searchText, setSearchText] = useState([]);
+	const [searchText, setSearchText] = useState("");
 	const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
 	useEffect(() => {
-		fetchData();
+		axios
+			.get(
+				" https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.331821&lng=78.083556&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+			)
+			.then((res) => {
+				console.log(res);
+				const restaurants =
+					res?.data?.data?.cards[1]?.card?.card?.gridElements
+						?.infoWithStyle?.restaurants || [];
+				setListOfRestaurant(restaurants);
+				setFilteredRestaurant(restaurants);
+			})
+			.catch((e) => {
+				console.log("error while fetching data ", e);
+			});
 	}, []);
 
-	const fetchData = async () => {
-		const apidata = await fetch(
-			"https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.331821&lng=78.083556&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-		);
-
-		const json = await apidata.json();
-		// console.log(
-		// 	json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-		// 		?.restaurants
-		// );
-		setListOfRestaurant(
-			json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-				?.restaurants
-		);
-		setFilteredRestaurant(
-			json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-				?.restaurants
-		);
-	};
+	// console.log(
+	// 	json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+	// 		?.restaurants
+	// );
 
 	const onlineStatus = useOnlineStatus();
-	const {loggedInUser,setUserName}= useContext(UserContext);
+	const { loggedInUser, setUserName } = useContext(UserContext);
 	if (onlineStatus === false) return <h1>Looks like your Internet broke</h1>;
+
 	//CONDITIONAL RENDERING --> rendering on basis of condition
-	return listOfRestaurant.length === 0 ? (
+	return listOfRestaurant?.length === 0 ? (
 		<Shimmer />
 	) : (
 		<div className="body">
@@ -91,8 +92,12 @@ const Body = () => {
 						>
 							Top Rated Restaurant
 						</button>
-						<input className="border border-black p-2" value={loggedInUser} 
-							placeholder="UserName" onChange={(e)=> setUserName(e.target.value)}></input>
+						<input
+							className="border border-black p-2"
+							value={loggedInUser}
+							placeholder="UserName"
+							onChange={(e) => setUserName(e.target.value)}
+						></input>
 					</div>
 				</div>
 			</div>
@@ -107,13 +112,12 @@ const Body = () => {
 				{<RestaurantCard resData={resList[0]}/>
 				<RestaurantCard resData={resList[1]}/> */}
 
-				{filteredRestaurant.map((restaurant) => (
+				{filteredRestaurant?.map((restaurant) => (
 					<Link
 						key={restaurant.info.id}
-						to={"/restaurants/" + restaurant.info.id}
+						to={"/restaurants/" + restaurant?.info?.id}
 					>
-						{restaurant.info.aggregatedDiscountInfoV3
-						? (
+						{restaurant.info.aggregatedDiscountInfoV3 ? (
 							<RestaurantCardPromoted resData={restaurant} />
 						) : (
 							<RestaurantCard resData={restaurant} />

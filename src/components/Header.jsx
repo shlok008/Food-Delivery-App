@@ -1,13 +1,16 @@
 import { useContext, useState } from "react";
-import {LOGO_URL} from "../utils/constants"
+import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-	const [btnName,setBtnName] = useState("Login")
-	const onlineStatus =useOnlineStatus();
-	const dataFromContext= useContext(UserContext);
+	const [btnName, setBtnName] = useState("Login");
+	const onlineStatus = useOnlineStatus();
+	const dataFromContext = useContext(UserContext);
+	//Subscribing to store using a Selector Hook
+	const cart = useSelector((store) => store.cart.items);
 
 	return (
 		<div className="flex justify-between bg-pink-100 shadow-lg m-5 ">
@@ -36,7 +39,9 @@ const Header = () => {
 					<li className="px-4 hover:scale-95 transition-transform duration-100 ease-in-out">
 						<Link to="/grocery">Grocery</Link>
 					</li>
-					<li className="px-4">Cart</li>
+					<li className="px-4 font-bold text-xl">
+						<Link to="/cart">Cart ({cart.length})</Link>
+					</li>
 					<button
 						className="login hover:scale-95 transition-transform duration-100 ease-in-out"
 						onClick={() => {
